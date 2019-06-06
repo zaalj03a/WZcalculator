@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CommandBarControls xmlns="urn:abb-robotics-robotstudio-commandbarcontrols"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="urn:abb-robotics-robotstudio-commandbarcontrols file:///C:\Program%20Files%20(x86)\ABB%20Industrial%20IT\Robotics%20IT\SDK\RobotStudio%20SDK%206.08\CommandBarControls.xsd">
+
+  <CommandBarButton id="WZcalculator.OpenButton" caption="WZcalculator" defaultEnabled="true"/>
+
+</CommandBarControls>

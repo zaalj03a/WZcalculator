@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{26C08F38-877E-49F6-A950-70C61D2543AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WZcalculator</RootNamespace>
+    <AssemblyName>WZcalculator</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramFiles)\ABB Industrial IT\Robotics IT\RobotStudio 6.08\Bin\RobotStudio.exe</StartProgram>
+    <StartArguments>/addin:"C:\Users\Zeid\Documents\Visual Studio 2017\Projects\WZcalculator\WZcalculator\bin\Debug\WZcalculator.rsaddin"</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramFiles)\ABB Industrial IT\Robotics IT\RobotStudio 6.08\Bin\RobotStudio.exe</StartProgram>
+    <StartArguments>/addin:"C:\Users\Zeid\Documents\Visual Studio 2017\Projects\WZcalculator\WZcalculator\bin\Release\WZcalculator.rsaddin"</StartArguments>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ABB.Robotics.Controllers.PC">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\ABB Industrial IT\Robotics IT\SDK\PCSDK 6.08\ABB.Robotics.Controllers.PC.dll</HintPath>
+    </Reference>
+    <Reference Include="ABB.Robotics.Math">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ProgramFiles)\ABB Industrial IT\Robotics IT\SDK\RobotStudio SDK 6.08\ABB.Robotics.Math.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ABB.Robotics.RobotStudio">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ProgramFiles)\ABB Industrial IT\Robotics IT\SDK\RobotStudio SDK 6.08\ABB.Robotics.RobotStudio.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.Controllers">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ProgramFiles)\ABB Industrial IT\Robotics IT\SDK\RobotStudio SDK 6.08\ABB.Robotics.RobotStudio.Controllers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.Environment">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ProgramFiles)\ABB Industrial IT\Robotics IT\SDK\RobotStudio SDK 6.08\ABB.Robotics.RobotStudio.Environment.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.Stations">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ProgramFiles)\ABB Industrial IT\Robotics IT\SDK\RobotStudio SDK 6.08\ABB.Robotics.RobotStudio.Stations.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.Stations.Forms">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(ProgramFiles)\ABB Industrial IT\Robotics IT\SDK\RobotStudio SDK 6.08\ABB.Robotics.RobotStudio.Stations.Forms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.UI">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\ABB Industrial IT\Robotics IT\RobotStudio 6.08\Bin\ABB.Robotics.RobotStudio.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="RobotStudio.Services.RobApi">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\ABB Industrial IT\Robotics IT\SDK\PCSDK 6.08\RobotStudio.Services.RobApi.dll</HintPath>
+    </Reference>
+    <Reference Include="RobotStudio.Services.RobApi.Desktop">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\ABB Industrial IT\Robotics IT\SDK\PCSDK 6.08\RobotStudio.Services.RobApi.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddinEntry.cs" />
+    <Compile Include="Helpers\GraphicsHelper.cs" />
+    <Compile Include="Helpers\ZoneHelper.cs" />
+    <Compile Include="Interfaces\IZone.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WZcalculatorToolWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WZcalculatorToolWindow.Designer.cs">
+      <DependentUpon>WZcalculatorToolWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZoneDimensions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ZoneDimensions.Designer.cs">
+      <DependentUpon>ZoneDimensions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Zones\Box.cs" />
+    <Compile Include="Zones\Sphere.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WZcalculator.rsaddin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ribbon\CommandBarControls.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Ribbon\ControlHelpTexts.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Ribbon\Ribbon.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ribbon\WZcalculator.OpenButton.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WZcalculatorToolWindow.resx">
+      <DependentUpon>WZcalculatorToolWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZoneDimensions.resx">
+      <DependentUpon>ZoneDimensions.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
