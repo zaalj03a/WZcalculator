@@ -50,8 +50,8 @@ namespace WZcalculator
             {
                 _oldZone = GetCurrentZone();
             }
-            _currentZoneType = zoneType;
-
+            _currentZoneType = zoneType ; 
+             
             switch (zoneType)
             {
                 case ZoneType.Box:
