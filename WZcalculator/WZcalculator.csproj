@@ -123,7 +123,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Ribbon\WZcalculator.OpenButton.Large.png" />
+    <Content Include="Ribbon\WZcalculator.OpenButton.Large.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WZcalculatorToolWindow.resx">
