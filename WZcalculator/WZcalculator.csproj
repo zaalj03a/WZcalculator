@@ -104,6 +104,7 @@
       <DependentUpon>ZoneDimensions.cs</DependentUpon>
     </Compile>
     <Compile Include="Zones\Box.cs" />
+    <Compile Include="Zones\Cylinder.cs" />
     <Compile Include="Zones\Sphere.cs" />
   </ItemGroup>
   <ItemGroup>

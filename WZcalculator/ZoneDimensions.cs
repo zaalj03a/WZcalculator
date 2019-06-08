@@ -20,6 +20,7 @@ namespace WZcalculator
     {
         private Box _box = new Box();
         private Sphere _sphere = new Sphere();
+        private Cylinder _cylinder = new Cylinder();
         private ZoneType _currentZoneType;
         private IZone _oldZone;
 
@@ -55,7 +56,7 @@ namespace WZcalculator
             switch (zoneType)
             {
                 case ZoneType.Box:
-                    // All controls are visible for box type
+                    // All controls are used for box type
                     Property1Label.Text = "Length (mm)";
                     Property2Label.Text = "Width (mm)";
                     Property3Label.Text = "Height (mm)";
@@ -63,10 +64,6 @@ namespace WZcalculator
                     Property1Numeric.Visible = true;
                     Property2Numeric.Visible = true;
                     Property3Numeric.Visible = true;
-
-                    Property1Numeric.Minimum = 1;
-                    Property2Numeric.Minimum = 1;
-                    Property2Numeric.Minimum = 1;
 
                     Box.BoxDimensions boxDimensions = (Box.BoxDimensions)_box.GetDimensions();
 
@@ -86,7 +83,7 @@ namespace WZcalculator
                     _box.SetDimensions(boxDimensions);
                     break;
                 case ZoneType.Sphere:
-                    // Only Property1Numeric are visible for sphere type
+                    // Only Property1Numeric are used for sphere type
                     Property1Label.Text = "Radius (mm)";
                     Property2Label.Text = "";
                     Property3Label.Text = "";
@@ -95,7 +92,6 @@ namespace WZcalculator
                     Property2Numeric.Visible = false;
                     Property3Numeric.Visible = false;
 
-                    Property1Numeric.Minimum = 1;
 
                     Sphere.SphereDimensions sphereDimensions = (Sphere.SphereDimensions)_sphere.GetDimensions();
 
@@ -112,7 +108,7 @@ namespace WZcalculator
 
                     break;
                 case ZoneType.Cylinder:
-                    // Only Property1Numeric and Property2Numeric are visible for cylinder type
+                    // Only Property1Numeric and Property2Numeric are used for cylinder type
                     Property1Label.Text = "Radius (mm)";
                     Property2Label.Text = "Height (mm)";
                     Property3Label.Text = "";
@@ -120,6 +116,21 @@ namespace WZcalculator
                     Property1Numeric.Visible = true;
                     Property2Numeric.Visible = true;
                     Property3Numeric.Visible = false;
+
+                    Cylinder.CylinderDimensions cylinderDimensions = (Cylinder.CylinderDimensions)_cylinder.GetDimensions();
+
+                    // Apply default values if necessarry.
+                    if (cylinderDimensions.Radius == 0) cylinderDimensions.Radius = 500;
+                    if (cylinderDimensions.Height == 0) cylinderDimensions.Height = 1000;
+
+                    Property1Numeric.Value = cylinderDimensions.Radius;
+                    Property2Numeric.Value = cylinderDimensions.Height;
+
+                    // Apply the stored values for position
+                    WZ_PositionControl.Value = new Vector3(cylinderDimensions.x, cylinderDimensions.y, cylinderDimensions.z);
+
+                    // Save the updated dimensions
+                    _cylinder.SetDimensions(cylinderDimensions);
                     break;
                 default:
                     break;
@@ -148,7 +159,7 @@ namespace WZcalculator
                 case ZoneType.Sphere:
                     return _sphere;
                 case ZoneType.Cylinder:
-                    return null;
+                    return _cylinder;
                 default:
                     return null;
             }
@@ -208,7 +219,15 @@ namespace WZcalculator
                     _sphere.SetDimensions(sphereDimensions);
                     break;
                 case ZoneType.Cylinder:
+                    Cylinder.CylinderDimensions cylinderDimensions = (Cylinder.CylinderDimensions)_cylinder.GetDimensions();
+                    cylinderDimensions.x = WZ_PositionControl.Value.x;
+                    cylinderDimensions.y = WZ_PositionControl.Value.y;
+                    cylinderDimensions.z = WZ_PositionControl.Value.z;
 
+                    cylinderDimensions.Radius = Property1Numeric.Value;
+                    cylinderDimensions.Height = Property2Numeric.Value;
+
+                    _cylinder.SetDimensions(cylinderDimensions);
                     break;
                 default:
                     break;

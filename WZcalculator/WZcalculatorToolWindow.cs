@@ -22,6 +22,7 @@ namespace WZcalculator
     public partial class WZcalculatorToolWindow : UserControl
     {
         private object _lastSelectedMechUnit;
+        private System.Timers.Timer _indicateTextCopiedTimer = new System.Timers.Timer(200);
 
         public WZcalculatorToolWindow()
         {
@@ -141,7 +142,7 @@ namespace WZcalculator
         {
             List<RsMechanicalUnit> mechUnitsInStation = new List<RsMechanicalUnit>();
 
-            // Find all MechanicalUnits in the station
+            // Find all MechanicalUnits in the station and add them to the combo box
             foreach (RsIrc5Controller controller in Station.ActiveStation.Irc5Controllers)
             {
                 for (int i = 0; i < controller.MechanicalUnits.Count; i++)
@@ -170,6 +171,22 @@ namespace WZcalculator
                     RobotCombobox.Items.RemoveAt(i);
                 }
             }
+        }
+
+        private void CopyButton_Click(object sender, EventArgs e)
+        {
+            InstructionRichTextBox.SelectAll();
+            InstructionRichTextBox.Copy();
+            InstructionRichTextBox.DeselectAll();
+
+            InstructionRichTextBox.BackColor = Color.Green;
+            _indicateTextCopiedTimer.SynchronizingObject = this;
+            _indicateTextCopiedTimer.Elapsed += delegate
+            {
+                InstructionRichTextBox.BackColor = DefaultBackColor;
+            };
+            _indicateTextCopiedTimer.AutoReset = false;
+            _indicateTextCopiedTimer.Start();
         }
     }
 }

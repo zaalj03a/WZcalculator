@@ -14,7 +14,9 @@
   
   <Assembly>
     <FileName>WZcalculator.dll</FileName>
-    <Path>C:\Users\Zeid\Documents\Visual Studio 2017\Projects\WZcalculator\WZcalculator\bin\Debug</Path> 
+    <Path>C:\Users\Zeid\Documents\Visual Studio 2017\Projects\WZcalculator\WZcalculator\bin\Debug</Path>
+    <Path>%COMMONPROGRAMFILES%\ABB Industrial IT\Robotics IT\RobotStudio\Addins</Path>
+
   </Assembly>
   
   <MinimumHostVersion>6.00</MinimumHostVersion>

@@ -26,6 +26,7 @@
             this.InstructionRichTextBox = new System.Windows.Forms.RichTextBox();
             this.ZoneGroupBox = new System.Windows.Forms.GroupBox();
             this.zoneDimensions = new WZcalculator.ZoneDimensions();
+            this.CopyButton = new System.Windows.Forms.Button();
             this.ZoneGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,11 +67,13 @@
             // 
             // RobotCombobox
             // 
+            this.RobotCombobox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RobotCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RobotCombobox.FormattingEnabled = true;
             this.RobotCombobox.Location = new System.Drawing.Point(4, 242);
             this.RobotCombobox.Name = "RobotCombobox";
-            this.RobotCombobox.Size = new System.Drawing.Size(234, 21);
+            this.RobotCombobox.Size = new System.Drawing.Size(241, 21);
             this.RobotCombobox.TabIndex = 2;
             this.RobotCombobox.SelectedIndexChanged += new System.EventHandler(this.RobotCombobox_SelectedIndexChanged);
             this.RobotCombobox.Click += new System.EventHandler(this.RobotCombobox_Click);
@@ -95,34 +98,53 @@
             // 
             // InstructionRichTextBox
             // 
+            this.InstructionRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.InstructionRichTextBox.Location = new System.Drawing.Point(4, 292);
             this.InstructionRichTextBox.Name = "InstructionRichTextBox";
             this.InstructionRichTextBox.ReadOnly = true;
-            this.InstructionRichTextBox.Size = new System.Drawing.Size(234, 35);
+            this.InstructionRichTextBox.Size = new System.Drawing.Size(241, 35);
             this.InstructionRichTextBox.TabIndex = 6;
             this.InstructionRichTextBox.Text = "";
             // 
             // ZoneGroupBox
             // 
+            this.ZoneGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ZoneGroupBox.Controls.Add(this.zoneDimensions);
             this.ZoneGroupBox.Location = new System.Drawing.Point(3, 96);
             this.ZoneGroupBox.Name = "ZoneGroupBox";
-            this.ZoneGroupBox.Size = new System.Drawing.Size(236, 112);
+            this.ZoneGroupBox.Size = new System.Drawing.Size(242, 112);
             this.ZoneGroupBox.TabIndex = 7;
             this.ZoneGroupBox.TabStop = false;
             this.ZoneGroupBox.Text = "Zone";
             // 
             // zoneDimensions
             // 
+            this.zoneDimensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.zoneDimensions.Location = new System.Drawing.Point(1, 18);
             this.zoneDimensions.Name = "zoneDimensions";
             this.zoneDimensions.Size = new System.Drawing.Size(235, 88);
             this.zoneDimensions.TabIndex = 0;
             // 
+            // CopyButton
+            // 
+            this.CopyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.CopyButton.Location = new System.Drawing.Point(170, 333);
+            this.CopyButton.Name = "CopyButton";
+            this.CopyButton.Size = new System.Drawing.Size(75, 23);
+            this.CopyButton.TabIndex = 8;
+            this.CopyButton.Text = "Copy";
+            this.CopyButton.UseVisualStyleBackColor = true;
+            this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
+            // 
             // WZcalculatorToolWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CopyButton);
             this.Controls.Add(this.InstructionRichTextBox);
             this.Controls.Add(this.InstructionLabel);
             this.Controls.Add(this.RobotLabel);
@@ -132,7 +154,7 @@
             this.Controls.Add(this.BoxRadioButton);
             this.Controls.Add(this.ZoneGroupBox);
             this.Name = "WZcalculatorToolWindow";
-            this.Size = new System.Drawing.Size(242, 374);
+            this.Size = new System.Drawing.Size(248, 365);
             this.ZoneGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -149,5 +171,6 @@
         private System.Windows.Forms.RichTextBox InstructionRichTextBox;
         private System.Windows.Forms.GroupBox ZoneGroupBox;
         private ZoneDimensions zoneDimensions;
+        private System.Windows.Forms.Button CopyButton;
     }
 }

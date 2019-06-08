@@ -47,11 +47,6 @@ namespace WZcalculator.Zones
 
         public void SetDimensions(object dimensions)
         {
-            if (dimensions.GetType() != typeof(BoxDimensions))
-            {
-                throw new Exception("Cannot set dimensions of box, expected type is " + nameof(BoxDimensions));
-            }
-
             _dimensions = (BoxDimensions)dimensions;
         }
 
