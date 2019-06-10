@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using ABB.Robotics.Math;
 using ABB.Robotics.RobotStudio;
 using ABB.Robotics.RobotStudio.Environment;
 using ABB.Robotics.RobotStudio.Stations;
-using WZcalculator;
+using System.Drawing;
+using System.Reflection;
+
 namespace WZcalculator
 {
     public class AddinEntry
@@ -15,7 +14,7 @@ namespace WZcalculator
 
         public static void AddinMain()
         {
-            CommandBarButton.FromID("WZcalculator.OpenButton").ExecuteCommand += OpenButtonClicked;
+            CommandBarButton.FromID(OPEN_BUTTON_ID).ExecuteCommand += OpenButtonClicked;
             Project.ActiveProjectChanged += Project_ActiveProjectChanged;
         }
 
@@ -26,7 +25,11 @@ namespace WZcalculator
 
         private static void OpenButtonClicked(object sender, ExecuteCommandEventArgs e)
         {
-            if (Station.ActiveStation == null) return;
+            if (Station.ActiveStation == null)
+            {
+                Logger.AddMessage("WZcalculator: There is no active station, add-in cannot be launched",LogMessageSeverity.Warning);
+                return;
+            }
 
             // Create a toolwindow that contains the WZcalculator UserControl and add it to the enviroment.
             ToolWindow toolWindow = new ToolWindow(MAIN_WINDOW_ID, new WZcalculatorToolWindow(), "WZcalculator");
@@ -44,7 +47,7 @@ namespace WZcalculator
         private static void MainWindowClosed(object sender, EventArgs e)
         {
             // Re-enable the button
-            CommandBarButton.FromID("WZcalculator.OpenButton").DefaultEnabled = true;
+            CommandBarButton.FromID(OPEN_BUTTON_ID).DefaultEnabled = true;
         }
 
         private static void CloseMainWindow()

@@ -1,16 +1,11 @@
 ﻿using ABB.Robotics.RobotStudio.Stations.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WZcalculator.Interfaces;
 using WZcalculator.Helpers;
 using ABB.Robotics.RobotStudio.Stations;
 using ABB.Robotics.Math;
 using System.Globalization;
-using ABB.Robotics.RobotStudio.Environment;
-using WZcalculator.Helpers;
+using System.Drawing;
 
 namespace WZcalculator.Zones
 {
@@ -37,7 +32,40 @@ namespace WZcalculator.Zones
 
         public void DrawZone(RsMechanicalUnit mechanicalUnit)
         {
-            _boxGraphic = GraphicsHelper.DrawAlignedBox(mechanicalUnit, _dimensions, _boxGraphic);
+            // Find the orientation of the robot base frame
+            Vector3 orientationVector = mechanicalUnit.BaseFrame.GlobalMatrix.EulerZYX;
+
+            // Create a Matrix4 with the same orientation as the robot base frame and the translation of the first corner of the box
+            Vector3 boxTranslation = new Vector3(_dimensions.x, _dimensions.y, _dimensions.z);
+            Matrix4 boxPosition = new Matrix4(boxTranslation, orientationVector);
+
+            // Create a Vector3 that contains the dimensions
+            Vector3 dimensionVector = new Vector3()
+            {
+                x = Decimal.ToDouble(_dimensions.Length) / 1000,
+                y = Decimal.ToDouble(_dimensions.Width) / 1000,
+                z = Decimal.ToDouble(_dimensions.Height) / 1000
+            };
+
+            // Draw a part that contains a box (body)
+            Part part = new Part();
+            Body box = Body.CreateSolidBox(new Matrix4(new Vector3()), dimensionVector);
+            box.Color = Color.Purple;
+            part.Bodies.Add(box);
+
+            // Drawing a temporary graphic requires it to be present in the station, therefore the part is added prior to it being drawn as a temorary graphic
+            // then immedietely removed from the station
+            Station.ActiveStation.GraphicComponents.Add(part);
+            TemporaryGraphic tg = Station.ActiveStation.TemporaryGraphics.DrawPart(boxPosition, part, 0.3);
+            Station.ActiveStation.GraphicComponents.Remove(part);
+
+            if (_boxGraphic != null)
+            {
+                Station.ActiveStation.TemporaryGraphics.Remove(_boxGraphic);
+                _boxGraphic.Delete();
+            }
+
+            _boxGraphic = tg;
         }
 
         public object GetDimensions()

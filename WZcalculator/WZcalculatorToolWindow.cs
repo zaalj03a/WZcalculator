@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ABB.Robotics.RobotStudio;
-using ABB.Robotics.RobotStudio.Environment;
 using ABB.Robotics.RobotStudio.Stations;
-using ABB.Robotics.Math;
-using WZcalculator.Zones;
-using WZcalculator.Interfaces;
-using WZcalculator.Helpers;
 
 namespace WZcalculator
 {

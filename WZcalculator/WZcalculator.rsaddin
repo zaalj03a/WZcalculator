@@ -3,22 +3,14 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="urn:abb-robotics-robotstudio-addin file:///C:\Program%20Files%20(x86)\ABB%20Industrial%20IT\Robotics%20IT\SDK\RobotStudio%20SDK%206.08\RobotStudioAddin.xsd"
                   autoLoad="true">
-
-  <ApplicationId>com.zaid.WZcalculator</ApplicationId>
- 
+  <ApplicationId>open.zaid.wzcalculator</ApplicationId>
   <DisplayName>WZcalculator</DisplayName>
   <DisplayVersion>1.0.0.1</DisplayVersion>
   <Description>Define world zones with a graphical user interface</Description>
-  
   <AddInType>General</AddInType>
-  
   <Assembly>
     <FileName>WZcalculator.dll</FileName>
-    <Path>C:\Users\Zeid\Documents\Visual Studio 2017\Projects\WZcalculator\WZcalculator\bin\Debug</Path>
-    <Path>%COMMONPROGRAMFILES%\ABB Industrial IT\Robotics IT\RobotStudio\Addins</Path>
-
   </Assembly>
-  
   <MinimumHostVersion>6.00</MinimumHostVersion>
   <Dependencies>Station</Dependencies>
   <Platform>Any</Platform>

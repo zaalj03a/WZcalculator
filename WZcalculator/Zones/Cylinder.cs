@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ABB.Robotics.RobotStudio.Stations;
+﻿using ABB.Robotics.RobotStudio.Stations;
 using ABB.Robotics.RobotStudio.Stations.Forms;
 using WZcalculator.Interfaces;
 using WZcalculator.Helpers;
 using ABB.Robotics.Math;
 using System.Globalization;
+using System;
 
 namespace WZcalculator.Zones
 {
@@ -55,7 +51,29 @@ namespace WZcalculator.Zones
 
         public void DrawZone(RsMechanicalUnit mechanicalUnit)
         {
-            _CylinderGraphic = GraphicsHelper.DrawAlignedCylinder(mechanicalUnit, _dimensions, _CylinderGraphic);
+            // Draw a part that cointaions a body (cylinder)
+            Part part = new Part();
+            Body cylinder = Body.CreateSolidCylinder(new Matrix4(new Vector3()), Decimal.ToDouble(_dimensions.Radius / 1000), Decimal.ToDouble(_dimensions.Height / 1000));
+            cylinder.Color = System.Drawing.Color.Purple;
+            part.Bodies.Add(cylinder);
+
+            // Get the base frame and modify only the translation part, this way the cylinder orientation is the same as the robots orientation
+            Matrix4 cylinderMatrix = mechanicalUnit.BaseFrame.GlobalMatrix;
+            cylinderMatrix.Translation = new Vector3(_dimensions.x, _dimensions.y, _dimensions.z);
+
+            // Drawing a temporary graphic requires it to be present in the station, therefore the part is added prior to it being drawn as a temorary graphic
+            // then immedietely removed from the station
+            Station.ActiveStation.GraphicComponents.Add(part);
+            TemporaryGraphic tg = Station.ActiveStation.TemporaryGraphics.DrawPart(cylinderMatrix, part, 0.3d);
+            Station.ActiveStation.GraphicComponents.Remove(part);
+
+            if (_CylinderGraphic != null)
+            {
+                Station.ActiveStation.TemporaryGraphics.Remove(_CylinderGraphic);
+                _CylinderGraphic.Delete();
+            }
+
+            _CylinderGraphic = tg;
         }
 
         public object GetDimensions()

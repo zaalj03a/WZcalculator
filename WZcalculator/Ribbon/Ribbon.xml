@@ -2,14 +2,11 @@
 <Ribbon xmlns="urn:abb-robotics-robotstudio-ribbon"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="urn:abb-robotics-ribbon file:///C:\Program%20Files%20(x86)\ABB%20Industrial%20IT\Robotics%20IT\SDK\RobotStudio%20SDK%206.08\Ribbon.xsd">
-
   <Tabs>
-    
     <Tab id="RAPID">
       <Group id="WZcalculator.calculatorGroup" caption="Utility">
         <Control id="WZcalculator.OpenButton" layout="Large"/>
       </Group>
     </Tab>
-    
   </Tabs>
 </Ribbon>

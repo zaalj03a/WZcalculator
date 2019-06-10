@@ -51,7 +51,26 @@ namespace WZcalculator.Zones
 
         public void DrawZone(RsMechanicalUnit mechanicalUnit)
         {
-            _sphereGraphic = GraphicsHelper.DrawSphere(_dimensions, _sphereGraphic);
+            // Draw a part that cointaions a body (sphere)
+            Part part = new Part();
+            Body sphere = Body.CreateSolidSphere(new Vector3(), Decimal.ToDouble(_dimensions.Radius / 1000));
+            sphere.Color = System.Drawing.Color.Purple;
+            part.Bodies.Add(sphere);
+
+            // Drawing a temporary graphic requires it to be present in the station, therefore the part is added prior to it being drawn as a temorary graphic
+            // then immedietely removed from the station
+            Matrix4 spherePosition = new Matrix4(new Vector3(_dimensions.x, _dimensions.y, _dimensions.z));
+            Station.ActiveStation.GraphicComponents.Add(part);
+            TemporaryGraphic tg = Station.ActiveStation.TemporaryGraphics.DrawPart(spherePosition, part, 0.3);
+            Station.ActiveStation.GraphicComponents.Remove(part);
+
+            if (_sphereGraphic != null)
+            {
+                Station.ActiveStation.TemporaryGraphics.Remove(_sphereGraphic);
+                _sphereGraphic.Delete();
+            }
+
+            _sphereGraphic = tg;
         }
 
         public object GetDimensions()

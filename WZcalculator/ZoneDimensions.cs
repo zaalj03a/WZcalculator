@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ABB.Robotics.Math;
 using WZcalculator.Zones;
@@ -43,11 +36,7 @@ namespace WZcalculator
             Property3Numeric.ValueChanged -= ControlValueChanged;
 
             // Store the old zone if the current zone is changed
-            if (_oldZone == null)
-            {
-                _oldZone = GetCurrentZone();
-            }
-            else if (_currentZoneType != zoneType)
+            if (_currentZoneType != zoneType)
             {
                 _oldZone = GetCurrentZone();
             }
@@ -168,7 +157,7 @@ namespace WZcalculator
 
         #region Events
 
-        public delegate void OnDimensionsChanged(object sender, DimensionsChangedEventArgs args);
+        public delegate void OnDimensionsChanged(object sender, DimensionsChangedEventArgs e);
 
         /// <summary>
         /// Raised when the dimensions or zone type is changed.
