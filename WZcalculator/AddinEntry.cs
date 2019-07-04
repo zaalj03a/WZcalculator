@@ -55,7 +55,7 @@ namespace WZcalculator
             // Find and close the tabbed toolwindow 
             if (UIEnvironment.Windows.FindWindows(w => (w.Id ?? "").Equals(MAIN_WINDOW_ID)).Length > 0)
             {
-                UIEnvironment.Windows[OPEN_BUTTON_ID].Close();
+                UIEnvironment.Windows[MAIN_WINDOW_ID].Close();
             }
         }
     }
