@@ -226,5 +226,6 @@ namespace WZcalculator
             RaiseDimensionsChangedEvent();
         }
         #endregion
+
     }
 }

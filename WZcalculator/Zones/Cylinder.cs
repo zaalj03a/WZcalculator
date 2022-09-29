@@ -1,7 +1,6 @@
 ﻿using ABB.Robotics.RobotStudio.Stations;
 using ABB.Robotics.RobotStudio.Stations.Forms;
 using WZcalculator.Interfaces;
-using WZcalculator.Helpers;
 using ABB.Robotics.Math;
 using System.Globalization;
 using System;
@@ -46,7 +45,10 @@ namespace WZcalculator.Zones
 
         public void DeleteZone()
         {
-            GraphicsHelper.DeleteTemporaryGraphic(_CylinderGraphic);
+            if (Station.ActiveStation != null && _CylinderGraphic != null)
+            {
+                Station.ActiveStation.TemporaryGraphics.Remove(_CylinderGraphic);
+            }    
         }
 
         public void DrawZone(RsMechanicalUnit mechanicalUnit)

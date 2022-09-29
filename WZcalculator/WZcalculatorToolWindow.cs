@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ABB.Robotics.RobotStudio;
 using ABB.Robotics.RobotStudio.Stations;
+using WZcalculator;
 
 namespace WZcalculator
 {
@@ -18,7 +19,6 @@ namespace WZcalculator
         public WZcalculatorToolWindow()
         {
             InitializeComponent();
-
             zoneDimensions.SetZoneType(ZoneType.Box);
             zoneDimensions.DimensionsChanged += ZoneDimensionsChanged;
             ProjectObject.ProjectObjectChanged += ProjectObjectChanged;
@@ -179,5 +179,6 @@ namespace WZcalculator
             _indicateTextCopiedTimer.AutoReset = false;
             _indicateTextCopiedTimer.Start();
         }
+
     }
 }
