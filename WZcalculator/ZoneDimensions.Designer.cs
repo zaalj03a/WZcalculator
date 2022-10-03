@@ -58,7 +58,7 @@
             this.WZ_PositionControl.ReadOnly = false;
             this.WZ_PositionControl.RefCoordSys = null;
             this.WZ_PositionControl.ShowLabel = true;
-            this.WZ_PositionControl.Size = new System.Drawing.Size(411, 34);
+            this.WZ_PositionControl.Size = new System.Drawing.Size(411, 39);
             this.WZ_PositionControl.TabIndex = 7;
             this.WZ_PositionControl.Text = "positionControl1";
             this.WZ_PositionControl.VerticalLayout = false;
@@ -96,7 +96,7 @@
             this.Property3Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Property3Label.MinimumSize = new System.Drawing.Size(80, 0);
             this.Property3Label.Name = "Property3Label";
-            this.Property3Label.Size = new System.Drawing.Size(80, 13);
+            this.Property3Label.Size = new System.Drawing.Size(80, 16);
             this.Property3Label.TabIndex = 11;
             this.Property3Label.Text = "Property3";
             // 
@@ -107,7 +107,7 @@
             this.Property2Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Property2Label.MinimumSize = new System.Drawing.Size(80, 0);
             this.Property2Label.Name = "Property2Label";
-            this.Property2Label.Size = new System.Drawing.Size(80, 13);
+            this.Property2Label.Size = new System.Drawing.Size(80, 16);
             this.Property2Label.TabIndex = 10;
             this.Property2Label.Text = "Property2";
             // 
@@ -120,7 +120,7 @@
             0,
             0,
             0});
-            this.Property3Numeric.Location = new System.Drawing.Point(273, 15);
+            this.Property3Numeric.Location = new System.Drawing.Point(273, 18);
             this.Property3Numeric.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.Property3Numeric.Maximum = new decimal(new int[] {
             99999,
@@ -129,7 +129,7 @@
             0});
             this.Property3Numeric.MinimumSize = new System.Drawing.Size(4, 0);
             this.Property3Numeric.Name = "Property3Numeric";
-            this.Property3Numeric.Size = new System.Drawing.Size(138, 20);
+            this.Property3Numeric.Size = new System.Drawing.Size(138, 22);
             this.Property3Numeric.TabIndex = 13;
             this.Property3Numeric.ThousandsSeparator = true;
             // 
@@ -142,7 +142,7 @@
             0,
             0,
             0});
-            this.Property2Numeric.Location = new System.Drawing.Point(136, 15);
+            this.Property2Numeric.Location = new System.Drawing.Point(136, 18);
             this.Property2Numeric.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.Property2Numeric.Maximum = new decimal(new int[] {
             99999,
@@ -151,7 +151,7 @@
             0});
             this.Property2Numeric.MinimumSize = new System.Drawing.Size(4, 0);
             this.Property2Numeric.Name = "Property2Numeric";
-            this.Property2Numeric.Size = new System.Drawing.Size(137, 20);
+            this.Property2Numeric.Size = new System.Drawing.Size(137, 22);
             this.Property2Numeric.TabIndex = 12;
             this.Property2Numeric.ThousandsSeparator = true;
             // 
@@ -164,7 +164,7 @@
             0,
             0,
             0});
-            this.Property1Numeric.Location = new System.Drawing.Point(0, 15);
+            this.Property1Numeric.Location = new System.Drawing.Point(0, 18);
             this.Property1Numeric.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.Property1Numeric.Maximum = new decimal(new int[] {
             99999,
@@ -173,7 +173,7 @@
             0});
             this.Property1Numeric.MinimumSize = new System.Drawing.Size(4, 0);
             this.Property1Numeric.Name = "Property1Numeric";
-            this.Property1Numeric.Size = new System.Drawing.Size(136, 20);
+            this.Property1Numeric.Size = new System.Drawing.Size(136, 22);
             this.Property1Numeric.TabIndex = 9;
             this.Property1Numeric.ThousandsSeparator = true;
             // 
@@ -184,7 +184,7 @@
             this.Property1Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Property1Label.MinimumSize = new System.Drawing.Size(80, 0);
             this.Property1Label.Name = "Property1Label";
-            this.Property1Label.Size = new System.Drawing.Size(80, 13);
+            this.Property1Label.Size = new System.Drawing.Size(80, 16);
             this.Property1Label.TabIndex = 9;
             this.Property1Label.Text = "Property1";
             // 

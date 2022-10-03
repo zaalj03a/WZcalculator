@@ -23,14 +23,7 @@ namespace WZcalculator
             zoneDimensions.DimensionsChanged += ZoneDimensionsChanged;
             ProjectObject.ProjectObjectChanged += ProjectObjectChanged;
 
-            // Find all robots in the station and add them to the combobox
-            foreach (RsIrc5Controller controller in Station.ActiveStation.Irc5Controllers)
-            {
-                foreach (RsMechanicalUnit mech in controller.MechanicalUnits)
-                {
-                    RobotCombobox.Items.Add(mech);
-                }
-            }
+            RefreshRobotsComboBox();
 
             if (RobotCombobox.Items.Count > 0)
             {
@@ -68,10 +61,13 @@ namespace WZcalculator
         {
             if (RobotCombobox.SelectedItem != null)
             {
-                RsMechanicalUnit mechUnit = RobotCombobox.SelectedItem as RsMechanicalUnit;
 
+                if (!(RobotCombobox.SelectedItem is RsMechanicalUnit mechUnit))
+                {
+                    Logger.AddMessage("Selected mechanical unit is invalid", LogMessageSeverity.Error);
+                    return;
+                }
                 args.zone.DrawZone(mechUnit);
-                args.oldZone?.DeleteZone();
                 InstructionRichTextBox.Text = args.zone.CreateRapidZone(mechUnit);
             }
             else
@@ -79,6 +75,11 @@ namespace WZcalculator
                 Logger.AddMessage("WZcalculator: Invalid selection", true);
             }
 
+            if (args?.oldZone != null)
+            {
+                args.oldZone.DeleteZone();
+            }
+           
         }
 
         private void RadioButtonCheckChanged(object sender, EventArgs e)
@@ -118,6 +119,7 @@ namespace WZcalculator
             }
         }
 
+
         protected override void Dispose(bool disposing)
         {
             zoneDimensions.GetCurrentZone().DeleteZone();
@@ -131,37 +133,7 @@ namespace WZcalculator
 
         private void RobotCombobox_Click(object sender, EventArgs e)
         {
-            List<RsMechanicalUnit> mechUnitsInStation = new List<RsMechanicalUnit>();
-
-            // Find all MechanicalUnits in the station and add them to the combo box
-            foreach (RsIrc5Controller controller in Station.ActiveStation.Irc5Controllers)
-            {
-                for (int i = 0; i < controller.MechanicalUnits.Count; i++)
-                {
-                    mechUnitsInStation.Add(controller.MechanicalUnits[i]);
-                }
-            }
-
-            // Find new robots that do not exist in the combobox item collection and add them
-            if (mechUnitsInStation.Count > 0)
-            {
-                foreach (RsMechanicalUnit mechUnit in mechUnitsInStation)
-                {
-                    if (!RobotCombobox.Items.Contains(mechUnit))
-                    {
-                        RobotCombobox.Items.Add(mechUnit);
-                    }
-                }
-            }
-
-            // Find robots that have been removed from the station and remove them from the combobox item collection
-            for (int i = 0; i < RobotCombobox.Items.Count; i++)
-            {
-                if (!mechUnitsInStation.Contains(RobotCombobox.Items[i]))
-                {
-                    RobotCombobox.Items.RemoveAt(i);
-                }
-            }
+            RefreshRobotsComboBox();
         }
 
         private void CopyButton_Click(object sender, EventArgs e)
@@ -180,5 +152,42 @@ namespace WZcalculator
             _indicateTextCopiedTimer.Start();
         }
 
+        private void RefreshRobotsComboBox()
+        {
+            List<RsMechanicalUnit> mechUnitsInStation = new List<RsMechanicalUnit>();
+
+            // Find applicable MechanicalUnits in the station and add them to the collection
+            foreach (RsIrc5Controller controller in Station.ActiveStation.Irc5Controllers.Cast<RsIrc5Controller>())
+            {
+                for (int i = 0; i < (controller?.MechanicalUnits?.Count ?? 0); i++)
+                {
+                    if (controller.MechanicalUnits[i].MechanicalUnitType == MechanicalUnitType.TCPRobot)
+                    {
+                        mechUnitsInStation.Add(controller.MechanicalUnits[i]);
+                    }
+                }
+            }
+
+            // Newly added robots are added to the combo box
+            if (mechUnitsInStation.Count > 0)
+            {
+                foreach (RsMechanicalUnit mechUnit in mechUnitsInStation)
+                {
+                    if (!RobotCombobox.Items.Contains(mechUnit))
+                    {
+                        RobotCombobox.Items.Add(mechUnit);
+                    }
+                }
+            }
+
+            // Robots that no longer exist in the station are removed also removed from the combobox
+            for (int i = 0; i < RobotCombobox.Items.Count; i++)
+            {
+                if (!mechUnitsInStation.Contains(RobotCombobox.Items[i]))
+                {
+                    RobotCombobox.Items.RemoveAt(i);
+                }
+            }
+        }
     }
 }
